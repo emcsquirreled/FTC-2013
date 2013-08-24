@@ -41,6 +41,9 @@ void Get_Position(float degrees, float movement)
 
 		nMotorEncoder[motorB] = 0;
 
+		nMotorEncoder[motorA] = 0;
+
+
 		if(movement == 2)  // if robot is moving
 
 		{
