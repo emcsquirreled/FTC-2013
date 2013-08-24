@@ -4,14 +4,15 @@ float Y;
 
 float X;
 
-
-void Get_Position(float degrees, float movement)
+task Get_Position()
 
 {
 
 	float distance;
 
 	float sin_cos;
+
+	int degrees;
 
 	int motor_A;
 
@@ -47,6 +48,7 @@ void Get_Position(float degrees, float movement)
 		if(movement == 2)  // if robot is moving
 
 		{
+			startHeading = currHeading;
 
 			while(movement == 2) // while robot is moving
 
@@ -71,6 +73,7 @@ void Get_Position(float degrees, float movement)
 		else if(movement == 1)   // if robot is stopped
 
 		{
+			degrees = currHeading;
 
 			sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
 
@@ -92,5 +95,8 @@ void Get_Position(float degrees, float movement)
 
 
 	}
+	// Tasks by default take as much cpu time as they need
+	// This wait allows time for other stuff to get done
+	wait1MSec(5);
 
 }
