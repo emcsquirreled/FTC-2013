@@ -1,16 +1,7 @@
 
-task main()
-{
-
 void Collision()
 
 {
-
-
-
-
-}
-
 
 
 
