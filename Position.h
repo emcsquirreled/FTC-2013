@@ -73,7 +73,7 @@ task Get_Position()
 		else if(movement == 1)   // if robot is stopped
 
 		{
-			degrees = currHeading;
+			degrees = currHeading;       //put currHeading value into degrees variable
 
 			sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
 
