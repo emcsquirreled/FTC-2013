@@ -4,6 +4,8 @@ float Y;
 
 float X;
 
+const float WheelCir = 7.35;  //Enter wheel circumference in inches
+
 task Get_Position()
 
 {
