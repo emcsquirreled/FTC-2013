@@ -20,6 +20,12 @@ task Get_Position()
 
 	int holder;
 
+	float Ytemp;
+
+	float Xtemp;
+
+	float holder2;
+
 	while(1==1) // repeat forever
 
 	{
@@ -33,12 +39,13 @@ task Get_Position()
 
 		motor_B = 0;
 
-		Y = 0;
+		Ytemp = 0;
 
-		X = 0;
+		Xtemp = 0;
 
 		sin_cos = 0;
 
+		holder2 = 0;
 
 		nMotorEncoder[motorB] = 0;
 
@@ -73,19 +80,27 @@ task Get_Position()
 		else if(movement == 1)   // if robot is stopped
 
 		{
+
+
+			holder2 = WheelCir * distance;    //get the distance of inches traveled
+
+			distance = holder2 * 2.54;     //convert inches to cm
+
 			degrees = currHeading;       //put currHeading value into degrees variable
 
 			sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
 
-			X = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
+			Xtemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
 
 			sin_cos = 0;                // set the sin_cos variable to zero
 
 			sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
 
-			Y = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
+			Ytemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
 
+			Y = Ytemp ++ Y;              // adds the past value of Y to Y
 
+			X = Xtemp ++ X;              // adds the past value of X to X
 
 		}
 
