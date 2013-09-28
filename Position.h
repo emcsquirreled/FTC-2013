@@ -1,5 +1,9 @@
 #include "Direction.h"
 
+#include "ReadData.h"
+
+
+
 float Y;
 
 float X;
@@ -65,13 +69,13 @@ task Get_Position()
 
 				// this will take the average of motors A & B and put it in variable distance
 
-				motor_B = nMotorEncoder[motorB];  // puts degrees from motor B into variable motor_B
+				distance = nMotorEncoder[motorB];  // puts degrees from motor B into variable motor_B
 
-				motor_A = nMotorEncoder[motorA];  // puts degrees from motor A into variable motor_A
+				//motor_A = nMotorEncoder[motorA];   puts degrees from motor A into variable motor_A
 
-				holder = motor_A + motor_B;      // add values from motor_A and motor_B then put it in variable holder
+				//holder = motor_A + motor_B;       add values from motor_A and motor_B then put it in variable holder
 
-				distance = holder / 2;          // divide holder value by 2 then put it in variable distance
+				//distance = holder / 2;           divide holder value by 2 then put it in variable distance
 
 
 			}
@@ -84,32 +88,133 @@ task Get_Position()
 		{
 
 
-			holder2 = WheelCir * distance;    //get the distance of inches traveled
+			if(Quadrant = 1)
 
-			distance = holder2 * 2.54;     //convert inches to cm
+			{
 
-			degrees = currHeading;       //put currHeading value into degrees variable
+				holder2 = WheelCir * distance;    //get the distance of inches traveled
 
-			sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
+				distance = holder2 * 2.54;     //convert inches to cm
 
-			Xtemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
+				degrees = currHeading;       //put currHeading value into degrees variable
 
-			sin_cos = 0;                // set the sin_cos variable to zero
+				sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
 
-			sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
+				Xtemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
 
-			Ytemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
+				sin_cos = 0;                // set the sin_cos variable to zero
 
-			Y = Ytemp ++ Y;              // adds the past value of Y to Y
+				sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
 
-			X = Xtemp ++ X;              // adds the past value of X to X
+				Ytemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
+
+				Y = Ytemp ++ Y;              // adds the past value of Y to Y
+
+				X = Xtemp ++ X;              // adds the past value of X to X
+
+
+
+			}
+
+
+			else if(Quadrant = 2)
+
+			{
+
+				holder2 = WheelCir * distance;    //get the distance of inches traveled
+
+				distance = holder2 * 2.54;     //convert inches to cm
+
+				degrees = currHeading;       //put currHeading value into degrees variable
+
+				sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
+
+				Ytemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the Y variable
+
+				sin_cos = 0;                // set the sin_cos variable to zero
+
+				sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
+
+				Xtemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the X variable
+
+				Ytemp = -1 * Ytemp;          //makes Y a negitive
+
+				Y = Ytemp ++ Y;              // adds the past value of Y to Y
+
+				X = Xtemp ++ X;              // adds the past value of X to X
+
+
+
+			}
+
+
+
+
+			else if(Quadrant = 3)
+
+			{
+
+				holder2 = WheelCir * distance;    //get the distance of inches traveled
+
+				distance = holder2 * 2.54;     //convert inches to cm
+
+				degrees = currHeading;       //put currHeading value into degrees variable
+
+				sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
+
+				Xtemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
+
+				sin_cos = 0;                // set the sin_cos variable to zero
+
+				sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
+
+				Ytemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
+
+				Ytemp = -1 * Ytemp;          //makes Y negitive
+
+				Xtemp = -1 * Xtemp;          //makes X negitive
+
+				Y = Ytemp ++ Y;              // adds the past value of Y to Y
+
+				X = Xtemp ++ X;              // adds the past value of X to X
+
+
+
+			}
+
+
+
+			else if(Quadrant = 4)
+
+			{
+
+				holder2 = WheelCir * distance;    //get the distance of inches traveled
+
+				distance = holder2 * 2.54;     //convert inches to cm
+
+				degrees = currHeading;       //put currHeading value into degrees variable
+
+				sin_cos = sin(degrees);       //  get the sin from the numbers of degrees turned
+
+				Ytemp = sin_cos * distance;      // multiply the sin by the number of distance travled and put it in the X variable
+
+				sin_cos = 0;                // set the sin_cos variable to zero
+
+				sin_cos = cos(degrees);    // get the cos from the numbers of degrees turned
+
+				Xtemp = sin_cos * distance;   //  multiply the cos by the number of distance travled and put it in the Y variable
+
+				Xtemp = -1 * Xtemp;         //makes X negitive
+
+				Y = Ytemp ++ Y;              // adds the past value of Y to Y
+
+				X = Xtemp ++ X;              // adds the past value of X to X
+
+
+
+			}
 
 		}
-
-
-
-
-
 
 	}
 	// Tasks by default take as much cpu time as they need
